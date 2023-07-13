@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header">
+        {{title}}
+    </div><br/>
+
+    <h2 class="text-center">{{'GREETINGMESSAGE' | translate}}</h2>
+    <div class="card-body">
+        <div class="container-fluid">
+            <div class="text-center">
+                <img src="../../assets/welcome.png"
+                     alt="welcome image"
+                     class="img-responsive center-block"
+                     style="max-height: 400px; padding-bottom: 50px;"
+                     width="25%">
+
+                <br/><progressbar class="progress-striped active" (click)="animate()" [value]="value" type="danger"><i>{{value}} / 150</i></progressbar>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    

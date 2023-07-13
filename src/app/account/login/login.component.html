@@ -1,0 +1,78 @@
+<!-- Template driven form -->
+<!-- <div class="container">
+    <form #myTemplateForm = "ngForm"
+      (ngSubmit)="sendFormData(myTemplateForm)">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" #emailVar="ngModel" email required ngModel name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <span class="text-danger"
+            *ngIf="emailVar.errors?.['required'] &&
+            myTemplateForm.controls['email']?.touched">
+                Email is required
+        </span>
+        <span class="text-danger"
+            *ngIf="emailVar.errors?.['email']">
+                Email is invalid
+        </span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" pattern="[a-zA-Z0-9 ]*" #passwordVar="ngModel" required minlength="3" ngModel name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <span class="text-danger"
+            *ngIf="passwordVar.errors?.['required'] &&
+            myTemplateForm.controls['password']?.touched">
+            Password is required
+        </span>
+        <span class="text-danger"
+            *ngIf="passwordVar.errors?.['minlength']">
+                Minimum lenght is 3 charachters
+        </span>
+        <span class="text-danger"
+            *ngIf="passwordVar.errors?.['pattern']">
+                Password is not validated for the correct pattern
+        </span>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" ngModel name="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div> -->
+<!-- ------------------------------------------------------------------- -->
+<!-- Reactive Form -->
+<div class="container">
+    <form (ngSubmit)="sendFormData()" [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" required formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <span class="text-danger"
+            *ngIf="loginForm.get('email')?.errors?.['required']">
+                Email is required
+          </span>
+        
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" required minlength="3" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <span class="text-danger"
+            *ngIf="loginForm.get('password')?.errors?.['required']">
+                Password is required
+          </span>
+          <span class="text-danger"
+            *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                Minimum lenght is 3 charachters
+          </span>
+        
+        </div>
+        
+        <div class="form-check">
+          <input type="checkbox" formControlName="rememberme" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" (click)="fillData()" class="btn btn-secondary" style="margin-left: 5px;">Fill Data</button>
+      </form>
+</div>

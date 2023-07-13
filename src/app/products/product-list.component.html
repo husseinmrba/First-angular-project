@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Product List</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2"> Filter By: </div>
+            <div class="col-md-2">
+                <input type="text" [(ngModel)]="listFilter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2"> Show Product Code: </div>
+            <div class="col-md-4">
+                <input type="checkbox" [checked]="displayCode" (change)="toggleProductCode()"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Filtered By: {{listFilter}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table" *ngIf="productsWithCategories$ | async as products">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button class="btn btn-primary" (click)="toggleImage()">
+                                    {{displayImage ? 'Hide' : 'Show'}} Images </button>
+                            </th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th *ngIf="displayCode">Code</th>
+                            <th>Available</th>
+                            <th>Prive</th>
+                            <th>5 Star Ratting</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products">
+                            <td>
+                                <img *ngIf="displayImage"
+                                     [src]="product.imageUrl"
+                                     [alt]="product.productName"
+                                     [title]="product.productName"
+                                     [style.width.px]="imageWidth"
+                                     [style.height.px]="imageHeight"
+                                     [style.margin.px]="imageMargin"
+                                />
+                            </td>
+                            <td>
+                                <a [routerLink]="['/products', product.productId]">
+                                     {{product.productName}}
+                                </a>
+                            </td>
+                            <td>{{product.categoryName}}</td>
+                            <td *ngIf="displayCode">{{product.productCode | lowercase | convertToSpace:'-'}}</td>
+                            <td>{{product.productDate}}</td>
+                            <td>{{product.productPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+                            <td><pro-star [rating]="product.starRating"></pro-star></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

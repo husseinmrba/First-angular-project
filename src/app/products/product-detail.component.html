@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header">
+        <h4>{{title + " " + productDetail?.productName}}</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <img [src]="productDetail?.imageUrl"
+                 alt="productImage.png"
+                 width="400"
+                 height="300">
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <h5>Id: {{productDetail?.productId}}</h5>
+                </div><br/>
+                <div class="row">
+                    <h5>Name: {{productDetail?.productName}}</h5>
+                </div><br/>
+                <div class="row">
+                    <h5>Code: {{productDetail?.productCode}}</h5>
+                </div><br/>
+                <div class="row">
+                    <h5>Date: {{productDetail?.productDate}}</h5>
+                </div><br/>
+                <div class="row">
+                    <h6>Description: {{productDetail?.description}}</h6>
+                </div><br/>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <h5>Price: {{productDetail?.productPrice | currency}} </h5>
+                </div><br/>
+                <div class="row">
+                    <h5>StarRating: {{productDetail?.starRating}}</h5>
+                </div><br/>
+                <div class="row">
+                    <h5>Category: {{productDetail?.categoryName}}</h5>
+                </div><br/>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary btn-sm float-end"
+                    (click)="onBack()">
+                Back
+            </button>
+            <button class="btn btn-secondary btn-sm"
+            (click)="onBack()">
+                  Back
+             </button>
+        </div>
+    </div>
+</div>
